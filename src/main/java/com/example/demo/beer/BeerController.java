@@ -17,7 +17,7 @@ public class BeerController {
         this.repository = repository;
     }
 
-    @GetMapping( value = "/allbeers", produces = "application/json" )
+    @GetMapping( value = "/allBeers", produces = "application/json" )
     Collection<Beer> list() {
 
         return repository.findAll();
