@@ -39,12 +39,12 @@ public class BeerController {
         return repository.findBeerByIsGreat( isGreat );
     }
 
-    @PostMapping( value = "/addBeer/{nameOfBeer}", produces = "application/json" )
-    Beer addBeer( @PathVariable String nameOfBeer ) {
+    @PostMapping( value = "/addBeer/{nameOfBeer}/{state}", produces = "application/json" )
+    Beer addBeer( @PathVariable String nameOfBeer, @PathVariable String state) {
 
         Beer beer = new Beer();
         beer.setName( nameOfBeer );
-        beer.setState( "Texas" );
+        beer.setState( state );
 
         return repository.save( beer );
     }

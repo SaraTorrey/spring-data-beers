@@ -19,10 +19,7 @@ public class BeerCommandLineRunner implements CommandLineRunner {
         beer.setName( "Pils" );
         beer.setGreat( true );
         beer.setState( "Germany" );
-
         repository.save( beer );
-
-
 
         repository.save( new Beer("St Arnold", true, "Texas") );
         repository.save( new Beer("Heineken", false, "Holland") );
