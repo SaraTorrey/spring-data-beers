@@ -27,7 +27,19 @@ public class SausageController {
 
     }
 
+    @GetMapping(value = "/search/{name}", produces = "application/json")
+    Collection<Sausage> search( @PathVariable String name){
 
+        return repository.findSausageByName( name );
+
+    }
+
+    @GetMapping(value = "/search/{name}/{city}", produces = "application/json")
+    Collection<Sausage> search( @PathVariable String name, @PathVariable String city){
+
+        return repository.findSausageByNameAndCity( name, city );
+
+    }
 
     @PostMapping( value = "/addSausage/{nameOfSausage}/{city}/{isDelicious}", produces = "application/json")
     Sausage addSausage( @PathVariable String nameOfSausage, @PathVariable String city, @PathVariable boolean isDelicious ) {

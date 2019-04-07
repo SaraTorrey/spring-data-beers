@@ -12,6 +12,7 @@ interface SausageRepository extends JpaRepository<Sausage, Long> {
 
     List<Sausage> findSausageByCity( String city );
     List<Sausage> findSausageByName( String name );
+    List<Sausage> findSausageByNameAndCity( String name, String city );
     List<Sausage> findSausageByIsDelicious( Boolean isDelicoius );
 
 }
