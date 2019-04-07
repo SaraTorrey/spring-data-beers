@@ -27,10 +27,20 @@ public class BeerController {
     @GetMapping( value = "/beersByState/{state}", produces = "application/json" )
     Collection<Beer> listbeersByState( @PathVariable String state ) throws Exception {
 
-        if ( state.length() < 4 ) {
+        checkNameLength( state );
+        return repository.findBeerByStateContainingIgnoreCase( state );
+    }
+
+    void checkNameLength( String state ) throws Exception {
+
+        if ( state.length() < getMinimumLength() ) {
             throw new Exception( "State is too short." );
         }
-        return repository.findBeerByStateContainingIgnoreCase( state );
+    }
+
+    private int getMinimumLength() {
+
+        return 4;
     }
 
     @GetMapping( value = "/beers/{isGreat}", produces = "application/json" )

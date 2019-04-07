@@ -20,29 +20,41 @@ public class SausageController {
         this.repository = repository;
     }
 
-    @GetMapping(value = "/allSausages", produces = "application/json")
+    @GetMapping( value = "/allSausages", produces = "application/json" )
     Collection<Sausage> list() {
 
         return repository.findAll();
 
     }
 
-    @GetMapping(value = "/search/{name}", produces = "application/json")
-    Collection<Sausage> search( @PathVariable String name){
+    @GetMapping( value = "/search/{name}", produces = "application/json" )
+    Collection<Sausage> search( @PathVariable String name ) throws Exception {
 
+        validateName( name );
         return repository.findSausageByName( name );
 
     }
 
-    @GetMapping(value = "/search/{name}/{city}", produces = "application/json")
-    Collection<Sausage> search( @PathVariable String name, @PathVariable String city){
+    @GetMapping( value = "/search/{name}/{city}", produces = "application/json" )
+    Collection<Sausage> search( @PathVariable String name, @PathVariable String city ) throws Exception {
 
+        validateName( name );
         return repository.findSausageByNameAndCity( name, city );
-
     }
 
-    @PostMapping( value = "/addSausage/{nameOfSausage}/{city}/{isDelicious}", produces = "application/json")
-    Sausage addSausage( @PathVariable String nameOfSausage, @PathVariable String city, @PathVariable boolean isDelicious ) {
+
+    private void validateName( String name ) throws Exception {
+
+        if ( name.length() < 4 ) {
+            throw new Exception( "Name is not good." );
+        }
+    }
+
+
+    @PostMapping( value = "/addSausage/{nameOfSausage}/{city}/{isDelicious}", produces = "application/json" )
+    Sausage addSausage( @PathVariable String nameOfSausage,
+                        @PathVariable String city,
+                        @PathVariable boolean isDelicious ) {
 
         Sausage sausage = new Sausage();
         sausage.setName( nameOfSausage );
