@@ -1,19 +1,18 @@
 package com.example.demo.beer;
 
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 @Component
-public class BeerCommandLineRunner implements CommandLineRunner {
+public class BeerDataLoader {
 
-    private final BeerRepository repository;
+    @Autowired
+     BeerRepository repository;
 
-    public BeerCommandLineRunner( BeerRepository repository ) {
-
-        this.repository = repository;
-    }
-
-    @Override public void run( String... args ) throws Exception {
+    @PostConstruct
+    public void loadBeerTestData( ) throws Exception {
 
         Beer beer = new Beer();
         beer.setName( "Pils" );
