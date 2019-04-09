@@ -43,7 +43,7 @@ public class SausageController {
     }
 
 
-    private void validateName( String name ) throws Exception {
+    private void validateName( String name ) throws Exception { //this is called the method signature where you have all the info for the method (name, parameter,
 
         if ( name.length() < 4 ) {
             throw new Exception( "Name is not good." );

@@ -14,9 +14,8 @@ public class Bread {
 
     }
 
-    public Bread( Long id, String name, Boolean isTasty, String country ) {
+    public Bread(  String name, Boolean isTasty, String country ) {
 
-        this.id = id;
         this.name = name;
         this.isTasty = isTasty;
         this.country = country;
@@ -79,5 +78,9 @@ public class Bread {
                ", isTasty=" + isTasty +
                ", name='" + name + '\'' +
                '}';
+    }
+
+    public Boolean setIsDelicious( boolean b ) {
+
     }
 }
